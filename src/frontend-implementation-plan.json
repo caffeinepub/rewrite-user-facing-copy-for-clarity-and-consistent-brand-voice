@@ -1,0 +1,358 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Consolidate Righteous Truths to Version 1 master foundation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Verify all AI-powered creative tools are functional in the Creative Studio",
+      "acceptanceCriteria": [
+        "All four creative tools render and accept user input",
+        "Generated content can be saved to the backend",
+        "Tools are accessible from the Creative Studio page"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CreativeStudioPage.tsx",
+          "operation": "modify",
+          "description": "Verify that all four AI tools (ColoringPageGenerator, AffirmationCreator, MemeCreator, DTF artwork generator) are rendered in tabs and properly handle user input and backend save operations. Ensure the page gates access behind authentication and displays generated asset images from frontend/public/assets/generated/creative-studio-banner.dim_1200x400.png in the hero section."
+        },
+        {
+          "path": "frontend/src/components/ColoringPageGenerator.tsx",
+          "operation": "modify",
+          "description": "Verify the component properly simulates AI generation, displays generated coloring pages using frontend/public/assets/generated/coloring-sample-butterfly.dim_300x300.png, and calls backend saveColoringPage mutation. Ensure theme and difficulty inputs work correctly."
+        },
+        {
+          "path": "frontend/src/components/AffirmationCreator.tsx",
+          "operation": "modify",
+          "description": "Verify the component generates affirmations based on mood selection, displays them using frontend/public/assets/generated/affirmation-sample.dim_400x300.png as reference styling, and saves to backend via saveAffirmation mutation."
+        },
+        {
+          "path": "frontend/src/components/MemeCreator.tsx",
+          "operation": "modify",
+          "description": "Verify canvas-based meme editor functions correctly with caption inputs, font selection, background image handling using frontend/public/assets/generated/meme-template-cat.dim_400x400.png as a default option, and saves memes through saveMeme mutation."
+        },
+        {
+          "path": "frontend/src/pages/DtfGalleryPage.tsx",
+          "operation": "modify",
+          "description": "Verify DTF artwork generator functionality is accessible through the upload modal. Ensure the gallery displays DTF samples like frontend/public/assets/generated/dtf-sample-floral.dim_300x300.png and the upload flow works correctly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Ensure DTF gallery and store are fully operational with upload, preview, purchase, and download functionality",
+      "acceptanceCriteria": [
+        "DTF gallery displays all uploaded designs with search and filtering",
+        "Users can upload new DTF designs through UploadDtfModal",
+        "Purchase flow works end-to-end with Stripe checkout",
+        "Purchased designs are downloadable from My Purchases page"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/DtfGalleryPage.tsx",
+          "operation": "modify",
+          "description": "Verify the gallery fetches and displays all DTF designs using getAllDtfDesigns query, implements search functionality with searchDtfDesigns, provides filtering by tag and artist, and renders design cards with preview thumbnails. Ensure the upload button triggers UploadDtfModal and the page displays frontend/public/assets/generated/dtf-printer-showcase.dim_400x300.png in a showcase section."
+        },
+        {
+          "path": "frontend/src/components/UploadDtfModal.tsx",
+          "operation": "modify",
+          "description": "Verify the modal handles DTF design uploads with file validation, tagging interface using frontend/public/assets/generated/tag-filter-interface.dim_500x300.png styling reference, pricing options, progress tracking with blob-storage component's withUploadProgress capability, and submission through uploadDtfDesign mutation. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/StorePage.tsx",
+          "operation": "modify",
+          "description": "Verify the store page displays purchasable DTF designs, implements search and filtering, renders product cards with pricing, and provides navigation to ContentDetailPage for purchase flow. Ensure layout matches frontend/public/assets/generated/store-page-layout.dim_800x600.png design reference."
+        },
+        {
+          "path": "frontend/src/pages/ContentDetailPage.tsx",
+          "operation": "modify",
+          "description": "Verify the detail page fetches DTF design details, displays preview thumbnails and metadata, shows licensing information using LicensingBadge component, and initiates Stripe checkout sessions through createCheckoutSession mutation. Use the stripe component to support purchase functionality and verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/MyPurchasesPage.tsx",
+          "operation": "modify",
+          "description": "Verify the purchases page fetches user purchases with getCallerPurchases query, displays purchased DTF designs with download buttons using downloadDtfDesign mutation, shows licensing information, and gates access behind authentication. Ensure proper error handling for download failures."
+        },
+        {
+          "path": "frontend/src/pages/PaymentSuccessPage.tsx",
+          "operation": "modify",
+          "description": "Verify the success page extracts sessionId from URL parameters using urlParams utility, calls purchaseDtfDesign mutation to record the purchase, displays success messaging, shows licensing details, and provides download access. Use the stripe component to support payment status verification and verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PaymentFailurePage.tsx",
+          "operation": "modify",
+          "description": "Verify the failure page displays appropriate error messaging and provides navigation back to the marketplace or DTF gallery."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Verify admin dashboard includes all management features",
+      "acceptanceCriteria": [
+        "Admin dashboard displays user metrics, content stats, and revenue analytics",
+        "Admin can approve or reject licensing requests",
+        "Admin can upload content through AdminUploadContentModal",
+        "Royalty automation data is visible and accurate"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AdminDashboardPage.tsx",
+          "operation": "modify",
+          "description": "Verify the admin dashboard fetches overview metrics with getAdminOverviewMetrics query, displays user statistics, content counts, revenue breakdown, and sales data. Ensure the page uses authorization component to restrict access to admin role, shows pending licensing requests with getPendingLicensingRequests, provides approval/rejection actions, and renders the interface matching frontend/public/assets/generated/admin-dashboard-layout.dim_800x600.png. Display content management tools using frontend/public/assets/generated/admin-content-management-dashboard.dim_800x600.png as reference. Verify the authorization component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/AdminUploadContentModal.tsx",
+          "operation": "modify",
+          "description": "Verify the modal handles admin content uploads with file validation, category selection, pricing setup, licensing configuration, progress tracking using blob-storage component's upload capabilities, and submission through uploadContent mutation. Ensure the interface matches frontend/public/assets/generated/admin-content-upload-panel.dim_800x600.png design. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Verify hooks for admin operations are properly defined: useGetAdminOverviewMetrics for dashboard data, useGetPendingLicensingRequests for approval queue, useApproveLicensingAgreement and useRejectLicensingAgreement for licensing actions, and useListApprovals for user approval management using the user-approval component. Verify the user-approval component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Confirm licensing and royalty automation is synchronized with proper consent workflow",
+      "acceptanceCriteria": [
+        "LicensingConsentModal allows creators to set royalty splits and usage terms",
+        "LicensingBadge displays accurate licensing information on content cards",
+        "Backend tracks and calculates royalties correctly",
+        "Licensing status is visible in content detail pages and creator dashboards"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/LicensingConsentModal.tsx",
+          "operation": "modify",
+          "description": "Verify the modal provides form inputs for creating licensing agreements with royalty split configuration (percentage sliders or inputs), redistribution rights selection (full/limited/none), derivative works options (withAttribution/fullRemixRights/none), commercial use toggle, and usage terms text area. Ensure the modal submits through submitLicensingAgreement mutation and displays the interface matching frontend/public/assets/generated/licensing-agreement-form.dim_600x400.png."
+        },
+        {
+          "path": "frontend/src/components/LicensingBadge.tsx",
+          "operation": "modify",
+          "description": "Verify the badge component fetches licensing summary with getRoyaltyAndLicensingSummary query, displays commercial use status, derivative works permissions, redistribution rights, and royalty splits as tooltipped badges. Ensure proper formatting and icon usage for different licensing types."
+        },
+        {
+          "path": "frontend/src/pages/ContentDetailPage.tsx",
+          "operation": "modify",
+          "description": "Verify the detail page displays LicensingBadge component for content, shows pending and published licensing agreements using getContentLicensingAgreements query, and provides options to update licensing terms through updateLicensingAgreement mutation for content owners."
+        },
+        {
+          "path": "frontend/src/pages/CreatorDashboardPage.tsx",
+          "operation": "modify",
+          "description": "Verify the creator dashboard displays licensing status for all creator content, shows royalty earnings from getRoyaltySplits query, provides links to manage licensing agreements, and displays pending licensing requests awaiting admin approval. Ensure royalty data is rendered using frontend/public/assets/generated/royalty-dashboard-interface.dim_800x600.png as design reference."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Verify licensing-related query hooks are defined: useGetRoyaltyAndLicensingSummary for summary data, useGetContentLicensingAgreements for agreement details, useSubmitLicensingAgreement for creation, useUpdateLicensingAgreement for modifications, and useGetRoyaltySplits for split data."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Verify embedded checkout links are functional and properly integrated with Stripe payment processing",
+      "acceptanceCriteria": [
+        "Content detail pages generate valid Stripe checkout sessions",
+        "Payment success page records purchases and provides download access",
+        "Payment failure page displays appropriate messaging",
+        "Checkout sessions handle licensing information correctly"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ContentDetailPage.tsx",
+          "operation": "modify",
+          "description": "Verify the purchase button triggers createCheckoutSession mutation with proper ShoppingItem array, handles the returned session JSON, validates the session.url property exists and is non-empty, and redirects using window.location.href (not router navigation) to the Stripe checkout URL. Use the stripe component to support checkout session creation and verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PaymentSuccessPage.tsx",
+          "operation": "modify",
+          "description": "Verify the page extracts sessionId from URL using urlParams utility, calls purchaseContent mutation to record the purchase, fetches getStripeSessionStatus to validate payment completion, displays licensing information from the purchased content, provides download access, and handles errors gracefully with proper user messaging. Use the stripe component to support payment status verification and verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PaymentFailurePage.tsx",
+          "operation": "modify",
+          "description": "Verify the page displays user-friendly failure messaging, explains common cancellation reasons, provides a button to return to the marketplace or store, and does not attempt to process any payments."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Verify useCreateCheckoutSession mutation is defined, properly parses the JSON response from createCheckoutSession backend method, validates the session object contains a url property, and returns a typed CheckoutSession object. Include error handling for invalid JSON or missing url."
+        },
+        {
+          "path": "frontend/src/components/StripeSetupModal.tsx",
+          "operation": "modify",
+          "description": "Verify the Stripe configuration modal is accessible to admin users only (using authorization component), checks isStripeConfigured query on mount, collects Stripe secret key and allowed countries list, validates inputs, calls setStripeConfiguration mutation, and displays warnings about environment security. Use the stripe component to support configuration and verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Verify the StripeSetupModal is rendered conditionally for admin users when Stripe is not yet configured. Ensure the modal appears after successful authentication and profile setup for admin users."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Ensure privacy policy is accessible and complete with all required legal sections",
+      "acceptanceCriteria": [
+        "LegalPrivacyPage renders with data collection and user rights sections",
+        "Privacy policy is linked from footer navigation",
+        "Content is properly formatted and scrollable"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/LegalPrivacyPage.tsx",
+          "operation": "modify",
+          "description": "Verify the privacy policy page renders all required sections including data collection practices, user rights, cookie usage, and data protection measures. Ensure the page uses proper heading hierarchy, icon decorations from frontend/public/assets/generated/legal-icon-transparent.dim_64x64.png, scrollable container, and consistent legal document styling."
+        },
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Verify the footer includes a navigation link to the Privacy Policy page at /legal/privacy, along with other legal pages. Ensure the footer is visible on all pages and uses proper link styling."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Verify optimized branding is consistently applied across all pages",
+      "acceptanceCriteria": [
+        "Brand colors and typography are consistent across all pages",
+        "AnimatedButton components are used throughout the UI with smooth hover effects",
+        "Header and Footer display proper branding elements",
+        "Navigation is smooth and responsive"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Verify global theme variables are defined consistently including brand colors, typography scale, spacing system, and custom animation keyframes. Ensure Tailwind base styles are imported and dark mode settings are configured properly."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Verify Tailwind configuration extends the theme with brand-specific colors, custom animations matching AnimatedButton effects, container settings, and enables required plugins (typography, container-queries, animate)."
+        },
+        {
+          "path": "frontend/src/components/AnimatedButton.tsx",
+          "operation": "modify",
+          "description": "Verify the AnimatedButton component provides configurable hover animations, forwards refs correctly, supports tooltips, accepts standard button props, and applies consistent brand styling. Ensure the component is used consistently across the application instead of plain button elements."
+        },
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Verify the header displays the Righteous Truths logo from frontend/public/assets/generated/righteous-truths-logo-transparent.dim_200x200.png, implements responsive navigation with desktop and mobile views using frontend/public/assets/generated/mobile-nav-design.dim_400x600.png as mobile reference, highlights active routes, includes authentication controls, and uses AnimatedButton components with tooltips for navigation items."
+        },
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Verify the footer displays branding elements, social media links with icons from frontend/public/assets/generated/social-media-buttons.dim_300x100.png, legal page navigation, copyright notice, and consistent styling. Ensure the footer is responsive and visible on all pages."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Verify the global layout wrapper applies consistent page structure with Header and Footer components, handles authentication state properly, manages profile setup flow, and ensures smooth route transitions between pages."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Confirm all essential legal pages are complete and accessible",
+      "acceptanceCriteria": [
+        "All four legal pages render with complete content",
+        "Legal pages are accessible from footer navigation",
+        "Pages use consistent formatting and UI components"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/LegalTermsPage.tsx",
+          "operation": "modify",
+          "description": "Verify the Terms of Service page renders all sections including account rules, content ownership, platform obligations, and user responsibilities. Ensure consistent formatting with other legal pages using scrollable containers and proper heading hierarchy."
+        },
+        {
+          "path": "frontend/src/pages/LegalCopyrightPage.tsx",
+          "operation": "modify",
+          "description": "Verify the Copyright Notice page renders sections on creator ownership, licensing options, DMCA procedures, and intellectual property rights. Ensure consistent formatting and icon usage from frontend/public/assets/generated/legal-icon-transparent.dim_64x64.png."
+        },
+        {
+          "path": "frontend/src/pages/LegalRefundPage.tsx",
+          "operation": "modify",
+          "description": "Verify the Refund Policy page renders sections covering digital content rules, refund eligibility conditions, processing timelines, and contact information. Ensure consistent formatting with other legal pages."
+        },
+        {
+          "path": "frontend/src/pages/LegalPrivacyPage.tsx",
+          "operation": "modify",
+          "description": "Verify the Privacy Policy page is complete with all required sections as specified in REQ-6."
+        },
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Verify the footer includes navigation links to all four legal pages: Terms of Service at /legal/terms, Copyright Notice at /legal/copyright, Refund Policy at /legal/refund, and Privacy Policy at /legal/privacy. Ensure links are properly styled and accessible."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Verify all legal page routes are properly registered in the TanStack Router configuration and render their respective components."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Verify production checklist validates all critical configurations",
+      "acceptanceCriteria": [
+        "ProductionChecklistPage runs all automated checks",
+        "Stripe configuration is verified",
+        "SEO metadata is present on all major pages",
+        "Admin role enforcement is working"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProductionChecklistPage.tsx",
+          "operation": "modify",
+          "description": "Verify the checklist page implements automated checks for: Stripe configuration status using isStripeConfigured query, admin role assignment validation using isCallerAdmin query (requires authorization component), SEO metadata presence on key pages, environment variable configuration, legal page completeness, and asset availability. Display check results with pass/fail indicators, detailed messages, and action buttons for failures. Use frontend/public/assets/generated/analytics-dashboard-interface.dim_800x600.png as layout reference. Verify the authorization component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SEOHead.tsx",
+          "operation": "modify",
+          "description": "Verify the SEO component dynamically updates document title, meta description, Open Graph tags, Twitter card metadata, canonical URLs, and structured data (JSON-LD) based on page context. Ensure it's used on all major pages including HomePage, MarketplacePage, StorePage, ContentDetailPage, and legal pages. Use frontend/public/assets/generated/seo-icon-transparent.dim_64x64.png for related UI elements."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Verify the homepage includes SEOHead component with appropriate metadata for the landing page, displays hero banner from frontend/public/assets/generated/hero-banner.dim_1200x600.jpg or frontend/public/assets/generated/website-hero-banner.dim_1200x600.png, features daily affirmation using frontend/public/assets/generated/daily-affirmation-card.dim_400x300.png, and provides navigation to key sections."
+        },
+        {
+          "path": "frontend/src/pages/MarketplacePage.tsx",
+          "operation": "modify",
+          "description": "Verify the marketplace includes SEOHead component with marketplace-specific metadata and implements all search and filtering functionality correctly."
+        },
+        {
+          "path": "frontend/src/pages/StorePage.tsx",
+          "operation": "modify",
+          "description": "Verify the store page includes SEOHead component with store-specific metadata and displays products correctly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Ensure embeddable widgets are functional and properly adapt when loaded in iframe contexts",
+      "acceptanceCriteria": [
+        "EmbedWidget component detects iframe context correctly",
+        "Widget links to appropriate site sections",
+        "Widget renders responsively"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/EmbedWidget.tsx",
+          "operation": "modify",
+          "description": "Verify the widget component detects iframe context using window.self !== window.top check, renders a compact embeddable interface with branding from frontend/public/assets/generated/righteous-truths-logo-transparent.dim_200x200.png, provides links to marketplace, store, and creative studio that open in parent window using target='_parent', and adapts styling for responsive embedding. Ensure the widget displays content previews appropriately."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Verify the app conditionally renders EmbedWidget when in iframe context, otherwise renders the full application layout with Header and Footer."
+        }
+      ]
+    }
+  ]
+}

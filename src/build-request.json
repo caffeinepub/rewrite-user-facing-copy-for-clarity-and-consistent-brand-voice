@@ -1,0 +1,202 @@
+{
+  "kind": "build_request",
+  "title": "Consolidate Righteous Truths to Version 1 master foundation",
+  "projectName": "Righteous Truths",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Verify all AI-powered creative tools are functional: coloring page generator, affirmation creator, meme creator, and DTF artwork generator in the Creative Studio",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "AI‑powered creative tools"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All four creative tools render and accept user input",
+        "Generated content can be saved to the backend",
+        "Tools are accessible from the Creative Studio page"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Ensure DTF gallery and store are fully operational with upload, preview, purchase, and download functionality",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "DTF gallery and store"
+        ]
+      },
+      "acceptanceCriteria": [
+        "DTF gallery displays all uploaded designs with search and filtering",
+        "Users can upload new DTF designs through UploadDtfModal",
+        "Purchase flow works end-to-end with Stripe checkout",
+        "Purchased designs are downloadable from My Purchases page"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Verify admin dashboard includes all management features: uploads, licensing approvals, royalties tracking, and analytics metrics",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "admin dashboard"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin dashboard displays user metrics, content stats, and revenue analytics",
+        "Admin can approve or reject licensing requests",
+        "Admin can upload content through AdminUploadContentModal",
+        "Royalty automation data is visible and accurate"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Confirm licensing and royalty automation is synchronized between backend and frontend with proper consent workflow",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "licensing and royalty automation"
+        ]
+      },
+      "acceptanceCriteria": [
+        "LicensingConsentModal allows creators to set royalty splits and usage terms",
+        "LicensingBadge displays accurate licensing information on content cards",
+        "Backend tracks and calculates royalties correctly",
+        "Licensing status is visible in content detail pages and creator dashboards"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Verify embedded checkout links are functional and properly integrated with Stripe payment processing",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "embedded checkout links"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Content detail pages generate valid Stripe checkout sessions",
+        "Payment success page records purchases and provides download access",
+        "Payment failure page displays appropriate messaging",
+        "Checkout sessions handle licensing information correctly"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Ensure privacy policy is accessible and complete with all required legal sections",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "privacy policy"
+        ]
+      },
+      "acceptanceCriteria": [
+        "LegalPrivacyPage renders with data collection and user rights sections",
+        "Privacy policy is linked from footer navigation",
+        "Content is properly formatted and scrollable"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Verify optimized branding is consistently applied across all pages including logos, colors, typography, and animated interactive buttons",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "optimized branding"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Brand colors and typography are consistent across all pages",
+        "AnimatedButton components are used throughout the UI with smooth hover effects",
+        "Header and Footer display proper branding elements",
+        "Navigation is smooth and responsive"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Confirm all essential legal pages are complete and accessible: Terms of Service, Copyright Notice, Refund Policy, and Privacy Policy",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All four legal pages render with complete content",
+        "Legal pages are accessible from footer navigation",
+        "Pages use consistent formatting and UI components"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Verify production checklist validates all critical configurations: Stripe setup, SEO metadata, environment settings, and admin permissions",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ]
+      },
+      "acceptanceCriteria": [
+        "ProductionChecklistPage runs all automated checks",
+        "Stripe configuration is verified",
+        "SEO metadata is present on all major pages",
+        "Admin role enforcement is working"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Ensure embeddable widgets are functional and properly adapt when loaded in iframe contexts",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ]
+      },
+      "acceptanceCriteria": [
+        "EmbedWidget component detects iframe context correctly",
+        "Widget links to appropriate site sections",
+        "Widget renders responsively"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify backend/main.mo actor architecture",
+    "Preserve all existing frontend immutable paths including hooks/useInternetIdentity.ts, hooks/useActor.ts, main.tsx, and components/ui",
+    "Maintain single-actor Motoko backend structure",
+    "Keep all legal content intact without modifications"
+  ],
+  "nonGoals": [
+    "Adding new features beyond what is already implemented",
+    "Changing the technology stack or framework choices",
+    "Modifying custom domain integration (already removed)",
+    "Creating multi-vendor marketplace functionality",
+    "Adding real-time features or WebSocket support"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

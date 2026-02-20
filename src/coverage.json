@@ -1,0 +1,161 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-20T09:02:48.016Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 10,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Verify all AI-powered creative tools are functional: coloring page generator, affirmation creator, meme creator, and DTF artwork generator in the Creative Studio",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/CreativeStudioPage.tsx",
+          "frontend/src/components/ColoringPageGenerator.tsx",
+          "frontend/src/components/AffirmationCreator.tsx",
+          "frontend/src/components/MemeCreator.tsx",
+          "frontend/src/pages/DtfGalleryPage.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Ensure embeddable widgets are functional and properly adapt when loaded in iframe contexts",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/components/EmbedWidget.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Ensure DTF gallery and store are fully operational with upload, preview, purchase, and download functionality",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/DtfGalleryPage.tsx",
+          "frontend/src/components/UploadDtfModal.tsx",
+          "frontend/src/pages/StorePage.tsx",
+          "frontend/src/pages/ContentDetailPage.tsx",
+          "frontend/src/pages/MyPurchasesPage.tsx",
+          "frontend/src/pages/PaymentSuccessPage.tsx",
+          "frontend/src/pages/PaymentFailurePage.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Verify admin dashboard includes all management features: uploads, licensing approvals, royalties tracking, and analytics metrics",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/AdminDashboardPage.tsx",
+          "frontend/src/components/AdminUploadContentModal.tsx",
+          "frontend/src/hooks/useQueries.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Confirm licensing and royalty automation is synchronized between backend and frontend with proper consent workflow",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/LicensingConsentModal.tsx",
+          "frontend/src/components/LicensingBadge.tsx",
+          "frontend/src/pages/ContentDetailPage.tsx",
+          "frontend/src/pages/CreatorDashboardPage.tsx",
+          "frontend/src/hooks/useQueries.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Verify embedded checkout links are functional and properly integrated with Stripe payment processing",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/ContentDetailPage.tsx",
+          "frontend/src/pages/PaymentSuccessPage.tsx",
+          "frontend/src/pages/PaymentFailurePage.tsx",
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/StripeSetupModal.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Ensure privacy policy is accessible and complete with all required legal sections",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/LegalPrivacyPage.tsx",
+          "frontend/src/components/Footer.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Verify optimized branding is consistently applied across all pages including logos, colors, typography, and animated interactive buttons",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/AnimatedButton.tsx",
+          "frontend/src/components/Header.tsx",
+          "frontend/src/components/Footer.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Confirm all essential legal pages are complete and accessible: Terms of Service, Copyright Notice, Refund Policy, and Privacy Policy",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/LegalTermsPage.tsx",
+          "frontend/src/pages/LegalCopyrightPage.tsx",
+          "frontend/src/pages/LegalRefundPage.tsx",
+          "frontend/src/pages/LegalPrivacyPage.tsx",
+          "frontend/src/components/Footer.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Verify production checklist validates all critical configurations: Stripe setup, SEO metadata, environment settings, and admin permissions",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/ProductionChecklistPage.tsx",
+          "frontend/src/components/SEOHead.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/pages/MarketplacePage.tsx",
+          "frontend/src/pages/StorePage.tsx"
+        ],
+        "matchedFiles": []
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/config.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
